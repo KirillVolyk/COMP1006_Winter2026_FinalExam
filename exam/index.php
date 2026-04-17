@@ -1,24 +1,29 @@
-<?php require "includes/header.php" ?>
+<?php 
+require "includes/connect.php";
+require "includes/header.php"; 
+?>
 <main>
-  <h2 class="mb-4"> Image Gallery - The One and Only</h2>
+    <h2 class="mb-4"> Image Gallery - The One and Only</h2>
+    <div class="container mt-4">
+        <h1 class="mb-4">Our Products</h1>
+    </div>
 </main>
-</body>
-</html>
 
 <?php 
     //get newest images first
 
-    $sql = "SELECT id, title, description, filename, created_at
+    $sql = "SELECT id, name, description, image_path, created_at
             FROM images
             ORDER BY created_at DESC";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
-    $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $images = $stmt->fetchAll();
 ?>
 
-<main class="container mt-4">
-    <h1 class="mb-4">Our Products</h1>
-
-</main>
+  <?php if (empty($images)): ?>
+    <p>No images yet.</p>
+  <?php else: ?>
+    <!-- Images display code goes here -->
+  <?php endif; ?>
 
 <?php require "includes/footer.php" ?>

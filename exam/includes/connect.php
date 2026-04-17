@@ -1,7 +1,7 @@
 <?php 
 
 $host = "localhost"; //hostname
-$db = "bitumi"; //database name
+$db = "image_gallery"; //database name
 $user = "root"; //username
 $password = ""; //password
 
