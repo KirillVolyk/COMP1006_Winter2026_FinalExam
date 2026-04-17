@@ -48,6 +48,14 @@ h1 {
     margin-bottom: 1.5rem;
 }
 
+/* gellry img styling basic */
+
+.gallery-img {
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+}
+
 h1 img {
     max-width: 220px;
     height: auto;

@@ -1,4 +1,4 @@
-CREATE TABLE products (
+CREATE TABLE images (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
     description TEXT NOT NULL,

@@ -23,7 +23,20 @@ require "includes/header.php";
   <?php if (empty($images)): ?>
     <p>No images yet.</p>
   <?php else: ?>
-    <!-- Images display code goes here -->
+    <div class="row">
+      <?php foreach ($images as $image): ?>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="<?= htmlspecialchars($image['image_path']); ?>" class="card-img-top gallery-img" alt="<?= htmlspecialchars($image['name']); ?>">
+            <div class="card-body">
+              <h5 class="card-title"><?= htmlspecialchars($image['name']); ?></h5>
+              <p class="card-text"><?= htmlspecialchars($image['description']); ?></p>
+              <small class="text-muted"><?= htmlspecialchars($image['created_at']); ?></small>
+            </div>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
   <?php endif; ?>
 
 <?php require "includes/footer.php" ?>

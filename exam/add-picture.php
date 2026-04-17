@@ -34,7 +34,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "Image description is required.";
     }
 
-    //Add Code Here 
+    // Handle file upload
+    if (isset($_FILES['image_image']) && $_FILES['image_image']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = "assets/";
+        $fileExtension = pathinfo($_FILES['image_image']['name'], PATHINFO_EXTENSION);
+        $filename = bin2hex(random_bytes(16)) . "." . $fileExtension;
+        $imagePath = $uploadDir . $filename;
+        
+        // Move uploaded file to assets directory
+        if (!move_uploaded_file($_FILES['image_image']['tmp_name'], $imagePath)) {
+            $errors[] = "Failed to upload image.";
+        }
+    } else {
+        $errors[] = "Please select an image to upload.";
+    }
 
     // If there are no errors, insert the product into the database
     if (empty($errors)) {
@@ -91,11 +104,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             required
         ></textarea>
 
-        <label for="product_image" class="form-label">Image</label>
+        <label for="image_image" class="form-label">Image</label>
         <input
             type="file"
-            id="product_image"
-            name="product_image"
+            id="image_image"
+            name="image_image"
             class="form-control mb-4"
             accept=".jpg,.jpeg,.png,.webp"
         >
