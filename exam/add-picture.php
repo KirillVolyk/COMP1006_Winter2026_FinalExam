@@ -37,13 +37,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle file upload
     if (isset($_FILES['image_image']) && $_FILES['image_image']['error'] === UPLOAD_ERR_OK) {
         $uploadDir = "uploads/";
-        $fileExtension = pathinfo($_FILES['image_image']['name'], PATHINFO_EXTENSION);
-        $filename = bin2hex(random_bytes(16)) . "." . $fileExtension;
-        $imagePath = $uploadDir . $filename;
+        $fileExtension = strtolower(pathinfo($_FILES['image_image']['name'], PATHINFO_EXTENSION));
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
         
-        // Move uploaded file to uploads folder
-        if (!move_uploaded_file($_FILES['image_image']['tmp_name'], $imagePath)) {
-            $errors[] = "Failed to upload image.";
+        // Validate file extension
+        if (!in_array($fileExtension, $allowedExtensions)) {
+            $errors[] = "Only JPG, JPEG, PNG, and WEBP files are allowed.";
+        } else {
+            $filename = bin2hex(random_bytes(16)) . "." . $fileExtension;
+            $imagePath = $uploadDir . $filename;
+            
+            // Move uploaded file to uploads folder
+            if (!move_uploaded_file($_FILES['image_image']['tmp_name'], $imagePath)) {
+                $errors[] = "Failed to upload image.";
+            }
         }
     } else {
         $errors[] = "Please select an image to upload.";
