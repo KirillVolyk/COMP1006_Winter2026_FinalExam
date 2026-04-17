@@ -36,12 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Handle file upload
     if (isset($_FILES['image_image']) && $_FILES['image_image']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = "assets/";
+        $uploadDir = "uploads/";
         $fileExtension = pathinfo($_FILES['image_image']['name'], PATHINFO_EXTENSION);
         $filename = bin2hex(random_bytes(16)) . "." . $fileExtension;
         $imagePath = $uploadDir . $filename;
         
-        // Move uploaded file to assets directory
+        // Move uploaded file to uploads folder
         if (!move_uploaded_file($_FILES['image_image']['tmp_name'], $imagePath)) {
             $errors[] = "Failed to upload image.";
         }
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "Please select an image to upload.";
     }
 
-    // If there are no errors, insert the product into the database
+    // If there are no errors, insert the image into the database
     if (empty($errors)) {
         $sql = "INSERT INTO images (name, description, image_path)
                 VALUES (:name, :description, :image_path)";

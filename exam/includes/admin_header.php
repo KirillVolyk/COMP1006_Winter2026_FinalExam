@@ -54,7 +54,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="delete.php">Delete Image</a>
+                            <a class="nav-link" href="logout.php">Logout</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a >Delete Images Enabled</a>
                         </li>
 
                     </ul>

@@ -1,6 +1,12 @@
 <?php 
+session_start();
 require "includes/connect.php";
-require "includes/header.php"; 
+
+if (isset($_SESSION['user_id'])) {
+    require "includes/admin_header.php";
+} else {
+    require "includes/header.php";
+}
 ?>
 <main>
     <h2 class="mb-4"> Image Gallery - The One and Only</h2>
@@ -33,6 +39,14 @@ require "includes/header.php";
               <p class="card-text"><?= htmlspecialchars($image['description']); ?></p>
               <small class="text-muted"><?= htmlspecialchars($image['created_at']); ?></small>
             </div>
+            <!-- Only show if logged in -->
+            <?php if (isset($_SESSION['user_id'])): ?>
+              <a class="btn btn-sm btn-danger mt-2"
+                    href="delete.php?id=<?= urlencode($image['id']); ?>"
+                    onclick="return confirm('Are you sure you want to delete this image?');">
+                    Delete
+              </a>
+            <?php endif; ?>
           </div>
         </div>
       <?php endforeach; ?>
