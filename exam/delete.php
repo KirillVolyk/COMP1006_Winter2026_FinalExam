@@ -18,8 +18,8 @@ if (!isset($_GET['id'])) {
 
 $Id = $_GET['id'];
 
-// Delete query (customer_id is the primary key)
-$sql = "DELETE FROM images WHERE cid = :id";
+// Delete query 
+$sql = "DELETE FROM images WHERE id = :id";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':id', $Id);
 $stmt->execute();
