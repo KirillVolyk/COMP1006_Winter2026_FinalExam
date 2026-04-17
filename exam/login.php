@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
 
-            header("Location: orders.php");
+            header("Location: add-picture.php");
             exit;
         } else {
             $error = "Invalid credentials. Please try again.";
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         >
 
         <button type="submit" class="btn btn-primary">Login</button>
-        <a href="signup.php" class="btn btn-secondary">Create Account</a>
+        <a href="register.php" class="btn btn-secondary">Create Account</a>
     </form>
 </main>
 

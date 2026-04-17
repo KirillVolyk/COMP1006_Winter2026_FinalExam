@@ -53,6 +53,10 @@
                             <a class="nav-link" href="login.php">Login</a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="delete.php">Delete Image</a>
+                        </li>
+
                     </ul>
 
                 </div>
