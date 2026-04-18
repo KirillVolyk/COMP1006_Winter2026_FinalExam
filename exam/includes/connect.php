@@ -6,10 +6,10 @@ $user = "root"; //username
 $password = ""; //password
 
 // same thng but for live server
-// $host = ""; //hostname
-// $db = ""; //database name
-// $user = ""; //username
-// $password = ""; //password
+// $host = "172.31.22.43"; //hostname
+// $db = "Kirill200638948"; //database name
+// $user = "Kirill200638948"; //username
+// $password = "gla4Z4boty"; //password
 
 //points to the database
 $dsn = "mysql:host=$host;dbname=$db";
